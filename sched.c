@@ -248,8 +248,10 @@ struct scheduler srtf_scheduler = {
  ***********************************************************************/
 struct scheduler rr_scheduler = {
 	.name = "Round-Robin",
-	.acquire = fcfs_acquire, /* Use the default FCFS acquire() */
-	.release = fcfs_release, /* Use the default FCFS release() */
+	/**
+	 * Implement your own acqure/release function to make priority
+	 * scheduler correct.
+	 */
 	/* Obviously, you should implement rr_schedule() and attach it here */
 };
 
