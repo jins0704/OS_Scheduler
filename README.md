@@ -65,6 +65,7 @@ To better understand them, you will implement SJF, SRTF, round-robin, priority, 
 	- More than one processes with different priority values can wait for the releasing resource. Suppose one process is holding one resource type, and other process is to acquire the same resource type. And then, another process with higher (or lower) priority is to acquire the resource type again, and then ...
 	- Many processes with different priority values are waiting for different resources held by a process.
 	You will get the full points for PIP *if and only if* these cases are all handled properly. Hint: calculate the *current* priority of the releasing process by checking resource acquitision status.
+  - See [this](https://www.embedded.com/how-to-use-priority-inheritance/) for a comprehensive exposition.
 
 
 ### Tips and Restriction

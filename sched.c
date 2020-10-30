@@ -271,7 +271,7 @@ struct scheduler prio_scheduler = {
  * Priority scheduler with priority ceiling protocol
  ***********************************************************************/
 struct scheduler pcp_scheduler = {
-	.name = "Priority + Priority Ceiling Protocol",
+	.name = "Priority + PCP Protocol",
 	/**
 	 * Implement your own acqure/release function too to make priority
 	 * scheduler correct.
@@ -283,7 +283,7 @@ struct scheduler pcp_scheduler = {
  * Priority scheduler with priority inheritance protocol
  ***********************************************************************/
 struct scheduler pip_scheduler = {
-	.name = "Priority + Priority Inheritance Protocol",
+	.name = "Priority + PIP Protocol",
 	/**
 	 * Ditto
 	 */

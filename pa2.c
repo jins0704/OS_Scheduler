@@ -402,11 +402,13 @@ static void __initialize(void)
 	INIT_LIST_HEAD(&__forkqueue);
 
 	if (quiet) return;
-	printf("**************************************************************\n");
-	printf("*\n");
-	printf("*   Simulating %s scheduler\n", sched->name);
-	printf("*\n");
-	printf("**************************************************************\n");
+	printf("****************************************************\n");
+	printf("\n");
+	printf("    SCHEDULER SIMULATOR 2020 Fall\n");
+	printf("\n");
+	printf("      Simulating %s scheduler\n", sched->name);
+	printf("\n");
+	printf("****************************************************\n");
 	printf("   N: Forked\n");
 	printf("   X: Finished\n");
 	printf("   =: Blocked\n");
