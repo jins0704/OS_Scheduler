@@ -263,8 +263,6 @@ struct scheduler sjf_scheduler = {
 static void srtf_forked(struct process *newp){
 	if(current){
 		if(current->lifespan - current->age > newp->lifespan){
-			current->lifespan = current->lifespan - current->age;
-			current->age = 0;
 			list_add_tail(&current->list,&readyqueue);
 			list_del_init(&newp->list);
 			current = newp;
@@ -292,7 +290,7 @@ static struct process *srtf_schedule(void){
 		
 		list_for_each_safe(ptr,ptrn,&readyqueue){
 			p = list_entry(ptr, struct process,list);
-			if(next->lifespan > p->lifespan){
+			if(next->lifespan-next->age > p->lifespan-p->age){
 				next = p;
 			}
 		}
@@ -315,10 +313,31 @@ struct scheduler srtf_scheduler = {
 /***********************************************************************
  * Round-robin scheduler
  ***********************************************************************/
+static struct process *rr_schedule(void){
+	struct process *next = NULL;
+	
+	if (!current || current->status == PROCESS_WAIT) {
+		goto pick_next;
+	}
+
+	if (current->age < current->lifespan) {
+		list_add_tail(&current->list,&readyqueue);
+	}
+
+	pick_next:
+	
+	if (!list_empty(&readyqueue)) {
+		next = list_first_entry(&readyqueue, struct process, list);
+		list_del_init(&next->list);
+	}
+	return next;
+}
+
 struct scheduler rr_scheduler = {
 	.name = "Round-Robin",
 	.acquire = fcfs_acquire, /* Use the default FCFS acquire() */
 	.release = fcfs_release, /* Use the default FCFS release() */
+	.schedule = rr_schedule,
 	/* Obviously, you should implement rr_schedule() and attach it here */
 };
 
